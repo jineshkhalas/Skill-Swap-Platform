@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Swap Platform</title>
+    <!-- Google Fonts - Inter for a modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">SkillSwap</a>
+        <nav>
+            <ul id="navMenu">
+                <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                <li><a href="#dashboard" class="nav-link" data-section="dashboard">Dashboard</a></li>
+                <li><a href="#profile" class="nav-link" data-section="profile">Profile</a></li>
+                <li><a href="#browse" class="nav-link" data-section="browse">Browse Swaps</a></li>
+                <li><a href="#swaps" class="nav-link" data-section="swaps">My Swaps</a></li>
+                <li><a href="#testimonials" class="nav-link" data-section="testimonials">Testimonials</a></li>
+                <li style="display: none;"><a href="#admin" class="nav-link" data-section="admin">Admin Panel</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+            &#9776;
+        </button>
+        <div class="header-actions" id="headerActions">
+            <!-- Login/Signup buttons will be dynamically shown/hidden by JS -->
+            <button id="login-btn" class="btn btn-secondary btn-sm" style="display: none;">Login</button>
+            <button id="signup-btn" class="btn btn-sm" style="display: none;">Sign Up</button>
+            <!-- Added 'btn' and 'btn-sm' classes to the logout button for consistent styling -->
+            <button id="logout-btn" class="btn btn-sm" style="display: none;">Logout</button>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Login Section -->
+        <section id="login" class="auth-section" style="display: none;">
+            <h1>Welcome Back!</h1>
+            <p class="auth-subtitle">Sign in to continue your skill-swapping journey.</p>
+            <form id="login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login-email" placeholder="your@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" placeholder="********" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <p class="auth-switch-text">Don't have an account? <a href="#" onclick="showSection('signup')">Sign Up</a></p>
+            </form>
+        </section>
+
+        <!-- Sign Up Section -->
+        <section id="signup" class="auth-section" style="display: none;">
+            <h1>Join SkillSwap Today!</h1>
+            <p class="auth-subtitle">Create your account and start exchanging skills.</p>
+            <form id="signup-form" class="auth-form">
+                <div class="form-group">
+                    <label for="signup-name">Your Name:</label>
+                    <input type="text" id="signup-name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email:</label>
+                    <input type="email" id="signup-email" placeholder="your@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password:</label>
+                    <input type="password" id="signup-password" placeholder="********" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirm Password:</label>
+                    <input type="password" id="signup-confirm-password" placeholder="********" required>
+                </div>
+                <button type="submit" class="btn">Sign Up</button>
+                <p class="auth-switch-text">Already have an account? <a href="#" onclick="showSection('login')">Login</a></p>
+            </form>
+        </section>
+
+        <!-- Home Section -->
+        <section id="home" class="active-section">
+            <div class="hero-section">
+                <h1>Welcome to SkillSwap!</h1>
+                <p>Unlock your potential by exchanging skills with a vibrant community. Learn, teach, and grow together!
+                </p>
+                <button class="btn" onclick="showSection('browse')">Find a Skill Swap Now!</button>
+            </div>
+
+            <h2>How It Works</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-user-plus"></i></div>
+                    <h3>Create Your Profile</h3>
+                    <p>Showcase your skills offered and skills wanted to the community.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-search"></i></div>
+                    <h3>Browse & Discover</h3>
+                    <p>Explore a wide range of skills offered by other users near you.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Request & Swap</h3>
+                    <p>Propose a swap and start learning or teaching a new skill!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-star"></i></div>
+                    <h3>Rate & Review</h3>
+                    <p>Share your experience and help others find great swap partners.</p>
+                </div>
+                <!-- New Feature Cards -->
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-comments"></i></div>
+                    <h3>Connect & Chat</h3>
+                    <p>Communicate directly with other users to coordinate your swaps.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-globe"></i></div>
+                    <h3>Expand Your Network</h3>
+                    <p>Meet new people and build valuable connections in your area.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" style="display:none;">
+            <h1>Welcome to SkillSwap!</h1>
+            <div class="profile-card">
+                <img src="https://placehold.co/130x130/007bff/ffffff?text=User" alt="Profile Photo"
+                    class="profile-photo">
+                <h2>John Doe</h2>
+                <p>Location: New York, USA</p>
+                <p>Availability: Weekends, Evenings</p>
+                <p>Profile Status: Public</p>
+                <h3>Skills Offered:</h3>
+                <div class="skills-list">
+                    <span class="skill-tag">Web Development (React)</span>
+                    <span class="skill-tag">Graphic Design (Photoshop)</span>
+                </div>
+                <h3>Skills Wanted:</h3>
+                <div class="skills-list">
+                    <span class="skill-tag">Spanish Language Lessons</span>
+                    <span class="skill-tag">Photography Basics</span>
+                </div>
+                <button class="btn" onclick="showSection('profile')">Edit Profile</button>
+            </div>
+
+            <h2>Quick Stats</h2>
+            <div class="quick-stats-grid">
+                <div class="stat-card">
+                    <div class="icon"><i class="fas fa-handshake"></i></div>
+                    <div class="value" id="total-swaps-stat">5</div>
+                    <div class="label">Total Swaps</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon"><i class="fas fa-hourglass-half"></i></div>
+                    <div class="value" id="pending-requests-stat">2</div>
+                    <div class="label">Pending Requests</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon"><i class="fas fa-star"></i></div>
+                    <div class="value" id="avg-rating-stat">4.8</div>
+                    <div class="label">Avg. Rating</div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon"><i class="fas fa-users"></i></div>
+                    <div class="value" id="active-users-stat">120</div>
+                    <div class="label">Active Users</div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="dashboard-section">
+                    <h3>Pending Swap Requests (Incoming)</h3>
+                    <ul id="incoming-requests">
+                        <!-- Example pending request -->
+                        <li>
+                            <span><strong>From:</strong> Jane Smith (Photography Basics) for your (Graphic
+                                Design)</span>
+                            <div class="action-buttons">
+                                <button class="btn btn-secondary btn-sm" onclick="acceptSwap('req1')">Accept</button>
+                                <button class="btn btn-danger btn-sm" onclick="rejectSwap('req1')">Reject</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="dashboard-section">
+                    <h3>My Pending Swap Requests (Outgoing)</h3>
+                    <ul id="outgoing-requests">
+                        <!-- Example outgoing request -->
+                        <li>
+                            <span><strong>To:</strong> Mike Johnson (Excel) for your (Web Development)</span>
+                            <div class="action-buttons">
+                                <button class="btn btn-danger btn-sm" onclick="deleteSwap('req2')">Delete</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Management Section -->
+        <section id="profile" style="display:none;">
+            <h1>Manage Your Profile</h1>
+            <form id="profile-form">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" value="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location (Optional):</label>
+                    <input type="text" id="location" value="New York, USA">
+                </div>
+                <div class="form-group">
+                    <label for="profile-photo">Profile Photo URL (Optional):</label>
+                    <input type="text" id="profile-photo" value="https://placehold.co/120x120/007bff/ffffff?text=User">
+                </div>
+
+                <div class="form-group">
+                    <label for="skills-offered">Skills Offered (comma-separated):</label>
+                    <textarea id="skills-offered">Web Development (React), Graphic Design (Photoshop)</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="skills-wanted">Skills Wanted (comma-separated):</label>
+                    <textarea id="skills-wanted">Spanish Language Lessons, Photography Basics</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="availability">Availability:</label>
+                    <select id="availability">
+                        <option value="weekends">Weekends</option>
+                        <option value="evenings" selected>Evenings</option>
+                        <option value="weekdays">Weekdays</option>
+                        <option value="flexible">Flexible</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="public-profile" checked>
+                    <label for="public-profile">Make Profile Public</label>
+                </div>
+
+                <button type="submit" class="btn">Save Profile</button>
+            </form>
+        </section>
+
+        <!-- Browse Swaps Section -->
+        <section id="browse" style="display:none;">
+            <h1>Browse Available Skills</h1>
+            <div class="search-bar">
+                <input type="text" id="search-skill" placeholder="Search by skill (e.g., Photoshop, Excel)">
+                <button class="btn" id="search-btn" onclick="searchUsers()">Search</button>
+            </div>
+
+            <div class="user-list" id="user-results">
+                <!-- Example User Card -->
+                <div class="user-card">
+                    <img src="https://placehold.co/90x90/e94560/ffffff?text=Jane" alt="User Photo" class="user-photo">
+                    <h4>Jane Smith</h4>
+                    <p>Location: Los Angeles, USA</p>
+                    <div class="skills-offered">
+                        <h5>Offers:</h5>
+                        <span class="skill-tag">Photography</span>
+                        <span class="skill-tag">Video Editing</span>
+                    </div>
+                    <div class="skills-wanted">
+                        <h5>Wants:</h5>
+                        <span class="skill-tag">Public Speaking</span>
+                        <span class="skill-tag">Cooking</span>
+                    </div>
+                    <button class="btn" onclick="requestSwap('jane_smith_id')">Request Swap</button>
+                </div>
+                <div class="user-card">
+                    <img src="https://placehold.co/90x90/007bff/ffffff?text=Mike" alt="User Photo" class="user-photo">
+                    <h4>Mike Johnson</h4>
+                    <p>Location: Chicago, USA</p>
+                    <div class="skills-offered">
+                        <h5>Offers:</h5>
+                        <span class="skill-tag">Excel</span>
+                        <span class="skill-tag">Data Analysis</span>
+                    </div>
+                    <div class="skills-wanted">
+                        <h5>Wants:</h5>
+                        <span class="skill-tag">Web Development</span>
+                        <span class="skill-tag">Guitar Lessons</span>
+                    </div>
+                    <button class="btn" onclick="requestSwap('mike_johnson_id')">Request Swap</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Swaps Section -->
+        <section id="swaps" style="display:none;">
+            <h1>My Swap Requests & History</h1>
+            <h2>Current & Pending Swaps</h2>
+            <div id="current-pending-swaps">
+                <div class="swap-request-item">
+                    <p><strong>You requested:</strong> Photography Basics from Jane Smith</p>
+                    <p><strong>For your:</strong> Graphic Design (Photoshop)</p>
+                    <p>Status: <span class="status-tag pending">Pending</span></p>
+                    <div class="actions">
+                        <button class="btn btn-danger btn-sm" onclick="deleteSwap('req3')">Delete Request</button>
+                    </div>
+                </div>
+                <div class="swap-request-item">
+                    <p><strong>Jane Smith requested:</strong> Public Speaking from you</p>
+                    <p><strong>For her:</strong> Photography</p>
+                    <p>Status: <span class="status-tag accepted">Accepted</span></p>
+                    <div class="actions">
+                        <button class="btn btn-secondary btn-sm" onclick="rateSwap('swap123')">Rate Swap</button>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Completed Swaps</h2>
+            <div id="completed-swaps">
+                <div class="swap-request-item">
+                    <p><strong>You swapped:</strong> Web Development with Mike Johnson</p>
+                    <p>Status: <span class="status-tag accepted">Completed</span></p>
+                    <p>Your Rating: 5 stars</p>
+                    <p>Feedback: "Great experience, learned a lot!"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" style="display:none;">
+            <h1>What Our Users Say</h1>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="quote">"SkillSwap changed my life! I learned guitar from a fantastic instructor and taught
+                        him web development. It's a win-win!"</p>
+                    <p class="author">- Alex P., Guitar Enthusiast</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"Finding someone to teach me Spanish in exchange for my photography skills was
+                        incredibly easy. The community is so supportive."</p>
+                    <p class="author">- Maria S., Aspiring Linguist</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"A truly innovative platform! I've connected with so many talented individuals and
+                        expanded my skill set significantly."</p>
+                    <p class="author">- David L., Lifelong Learner</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customer Policy and Rights Section -->
+        <section id="policy" style="display:none;">
+            <h1>Customer Policy and Rights</h1>
+            <div class="policy-content">
+                <h2>1. Introduction</h2>
+                <p>Welcome to SkillSwap! This policy outlines your rights and responsibilities as a user of our
+                    platform. By accessing or using SkillSwap, you agree to comply with and be bound by the terms and
+                    conditions described herein.</p>
+
+                <h2>2. User Accounts</h2>
+                <ul>
+                    <li><strong>Account Creation:</strong> You must provide accurate and complete information when
+                        creating your account.</li>
+                    <li><strong>Account Security:</strong> You are responsible for maintaining the confidentiality of
+                        your account credentials and for all activities that occur under your account.</li>
+                    <li><strong>Eligibility:</strong> Users must be at least 18 years old to create an account and
+                        participate in skill swaps.</li>
+                </ul>
+
+                <h2>3. Skill Swaps and Interactions</h2>
+                <ul>
+                    <li><strong>Honesty and Accuracy:</strong> All skill descriptions and personal information must be
+                        accurate and truthful.</li>
+                    <li><strong>Mutual Respect:</strong> Users are expected to interact respectfully and professionally.
+                        Harassment, discrimination, or any form of abusive behavior will not be tolerated.</li>
+                    <li><strong>Agreement on Terms:</strong> Before a swap, both parties must clearly agree on the
+                        scope, duration, and method of the skill exchange.</li>
+                    <li><strong>Cancellation Policy:</strong> Users should communicate any need to cancel or reschedule
+                        a swap in a timely and respectful manner. Repeated last-minute cancellations may result in
+                        account review.</li>
+                </ul>
+
+                <h2>4. Content and Conduct</h2>
+                <ul>
+                    <li><strong>Prohibited Content:</strong> You may not post, upload, or share any content that is
+                        illegal, harmful, threatening, defamatory, obscene, or infringing on intellectual property
+                        rights.</li>
+                    <li><strong>Prohibited Activities:</strong> Engaging in any activity that disrupts or interferes
+                        with the platform's operation, or attempts to gain unauthorized access to other users' accounts,
+                        is strictly forbidden.</li>
+                </ul>
+
+                <h2>5. Privacy Policy</h2>
+                <p>Your privacy is important to us. Our <a href="#">Privacy Policy</a> (link to be added) details how we
+                    collect, use, and protect your personal data. By using SkillSwap, you consent to our data practices
+                    as described in the Privacy Policy.</p>
+
+                <h2>6. Dispute Resolution</h2>
+                <p>In the event of a dispute between users, SkillSwap encourages direct communication to resolve issues
+                    amically. If a resolution cannot be reached, users may contact SkillSwap support for mediation. We
+                    reserve the right to take appropriate action, including account suspension, based on our
+                    investigation.</p>
+
+                <h2>7. Limitation of Liability</h2>
+                <p>SkillSwap provides a platform for skill exchange but does not guarantee the quality, safety, or
+                    legality of skills offered or exchanged. Users engage in swaps at their own risk. SkillSwap is not
+                    liable for any direct, indirect, incidental, or consequential damages arising from your use of the
+                    platform.</p>
+
+                <h2>8. Changes to Policy</h2>
+                <p>SkillSwap reserves the right to modify this policy at any time. We will notify users of significant
+                    changes through the platform or via email. Your continued use of the platform after such
+                    modifications constitutes your acceptance of the new terms.</p>
+
+                <h2>9. Contact Us</h2>
+                <p>If you have any questions or concerns regarding this policy, please contact our support team at
+                    support@skillswap.com.</p>
+            </div>
+        </section>
+
+        <!-- Admin Panel Section -->
+        <section id="admin" style="display:none;">
+            <h1>Admin Dashboard</h1>
+
+            <div class="admin-section">
+                <h2>Manage Skill Descriptions</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Skill Description</th>
+                            <th>User</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="skill-moderation-list">
+                        <tr>
+                            <td>SK001</td>
+                            <td>"Learn to hack into anything!"</td>
+                            <td>BadUser123</td>
+                            <td><span class="status-tag pending">Pending Review</span></td>
+                            <td class="action-buttons">
+                                <button class="btn btn-danger btn-sm" onclick="rejectSkill('SK001')">Reject</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>SK002</td>
+                            <td>"Advanced Python Programming"</td>
+                            <td>GoodDev456</td>
+                            <td><span class="status-tag accepted">Approved</span></td>
+                            <td class="action-buttons">
+                                <!-- No action needed if approved, or add edit/unapprove -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="admin-section">
+                <h2>Manage Users</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-management-list">
+                        <tr>
+                            <td>USR001</td>
+                            <td>BadUser123</td>
+                            <td>bad@example.com</td>
+                            <td><span class="status-tag pending">Active</span></td>
+                            <td class="action-buttons">
+                                <button class="btn btn-danger btn-sm" onclick="banUser('USR001')">Ban</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>USR002</td>
+                            <td>GoodDev456</td>
+                            <td>good@example.com</td>
+                            <td><span class="status-tag accepted">Active</span></td>
+                            <td class="action-buttons">
+                                <!-- No action needed -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="admin-section">
+                <h2>Monitor Swaps</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Swap ID</th>
+                            <th>Requester</th>
+                            <th>Receiver</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="swap-monitoring-list">
+                        <tr>
+                            <td>SWP001</td>
+                            <td>John Doe</td>
+                            <td>Jane Smith</td>
+                            <td><span class="status-tag accepted">Accepted</span></td>
+                            <td>2025-07-10</td>
+                        </tr>
+                        <tr>
+                            <td>SWP002</td>
+                            <td>Mike Johnson</td>
+                            <td>John Doe</td>
+                            <td><span class="status-tag pending">Pending</span></td>
+                            <td>2025-07-11</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="admin-section">
+                <h2>Send Platform-Wide Message</h2>
+                <form id="admin-message-form">
+                    <div class="form-group">
+                        <label for="platform-message">Message Content:</label>
+                        <textarea id="platform-message" placeholder="Type your message here..."></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+
+            <div class="admin-section">
+                <h2>Reports & Logs</h2>
+                <div class="admin-reports">
+                    <ul>
+                        <li><a href="#" onclick="downloadReport('user-activity')">Download User Activity Report</a></li>
+                        <li><a href="#" onclick="downloadReport('feedback-logs')">Download Feedback Logs</a></li>
+                        <li><a href="#" onclick="downloadReport('swap-stats')">Download Swap Statistics</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 SkillSwap Platform. All rights reserved.</p>
+        <a href="#policy" class="nav-link" data-section="policy" style="background-color: var(--card-bg);
+    color: var(--text-color); text-decoration: none;">Policy & Rights</a>
+    </footer>
+
+    <!-- Custom Message Box for Alerts/Confirmations -->
+    <div id="message-box-overlay" class="message-box-overlay">
+        <div class="message-box">
+            <h3 id="message-box-title"></h3>
+            <p id="message-box-content"></p>
+            <div class="btn-group" id="message-box-actions">
+                <!-- Buttons will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
